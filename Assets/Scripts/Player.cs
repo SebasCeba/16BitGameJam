@@ -17,8 +17,14 @@ public class Player : MonoBehaviour
     private float jumpingPower = 16f; 
     private bool isFacingRight = true;
 
+    public BlockManager blockManager;
+
     private void Update()
     {
+        if(blockManager.IsBusy())
+        {
+            return;
+        }
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
