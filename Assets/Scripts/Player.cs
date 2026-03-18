@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -21,8 +18,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(blockManager.IsBusy())
+        if(blockManager != null && blockManager.IsBusy())
         {
+            if(rb2D != null) rb2D.velocity = Vector2.zero;
             return;
         }
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -56,7 +54,6 @@ public class Player : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
-
     private void Flip()
     {
         if(isFacingRight && horizontalInput < 0f || !isFacingRight && horizontalInput > 0f)
