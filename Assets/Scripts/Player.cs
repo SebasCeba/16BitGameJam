@@ -8,21 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator anim;
 
     private float horizontalInput;
-    [SerializeField]
-    private float speed = 8f;
-    [SerializeField]
-    private float jumpingPower = 16f; 
+    [SerializeField] private float speed = 8f;
+    [SerializeField] private float jumpingPower = 16f; 
     private bool isFacingRight = true;
 
-    public BlockManager blockManager;
+    
 
     private void Update()
-    {
-        if(blockManager != null && blockManager.IsBusy())
-        {
-            if(rb2D != null) rb2D.velocity = Vector2.zero;
-            return;
-        }
+    { 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
@@ -41,7 +34,17 @@ public class Player : MonoBehaviour
             anim.SetBool("Jumping", true);
         }
 
-        Flip();
+        // Testing the celebrate animation, will be used for the victory screen.
+        if(Input.GetKey(KeyCode.H))
+        {
+            anim.SetBool("Celebrate", true);
+        }
+        else
+        {
+            anim.SetBool("Celebrate", false);
+        }
+
+            Flip();
 
         anim.SetBool("Jumping", !IsGrounded());
     }

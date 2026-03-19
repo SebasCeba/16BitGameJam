@@ -1,27 +1,22 @@
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using Cinemachine;
 
 public class BlockManager : MonoBehaviour
 {
     public Tilemap playerBlockTile;
     public TileBase placeTile;
-
-    //public TileBase previewTile;
-    //private Vector3Int? previewCell = null;
-
     private Vector2 lastDirection = Vector2.zero;
 
     public CinemachineVirtualCamera vcam;
 
     public float placeRange = 10f;
-    //public float placeCooldown = 0f;
-    //private float lastPlaceTime = 0f; 
 
 
     private void Update()
     {
+        HandleDelete();
         HandlePlacement();
         HandleUtility();
     }
@@ -58,7 +53,7 @@ public class BlockManager : MonoBehaviour
     //    }
     //}
 
-    void HandlePlacement()
+    private void HandlePlacement()
     {
         Vector2 direction = GetDirectionInput();
         if (direction != Vector2.zero)
@@ -76,8 +71,28 @@ public class BlockManager : MonoBehaviour
             }
         }
     }
+    private void HandleDelete()
+    {
+        // Delete a block at the player's feet when I is pressed.
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // Find the player in the scene
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                // Use the bottom of the player's collider for accuracy
+                Vector3 feetPos = player.transform.position + Vector3.down * 0.5f;
+                Vector3Int cellPos = playerBlockTile.WorldToCell(feetPos);
+                if (playerBlockTile.HasTile(cellPos))
+                {
+                    playerBlockTile.SetTile(cellPos, null);
+                    playerBlockTile.RefreshTile(cellPos);
+                }
+            }
+        }
+    }
 
-    Vector2 GetDirectionInput()
+    private Vector2 GetDirectionInput()
     {
         if(Input.GetKey(KeyCode.W)) return Vector2.up;
         if (Input.GetKey(KeyCode.A)) return Vector2.left;
@@ -85,12 +100,12 @@ public class BlockManager : MonoBehaviour
 
         return Vector2.zero;
     }
-    void HandleUtility()
+    private void HandleUtility()
     {
         // Restart scene
         if (Input.GetKeyDown(KeyCode.J))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadSceneAsync(0);
         }
 
         // Zoom toggle
@@ -101,10 +116,5 @@ public class BlockManager : MonoBehaviour
             else
                 vcam.m_Lens.OrthographicSize = 50f;
         }
-    }
-
-    public bool IsBusy()
-    {
-        return false;
     }
 }
