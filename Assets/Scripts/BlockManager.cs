@@ -13,6 +13,8 @@ public class BlockManager : MonoBehaviour
 
     public float placeRange = 10f;
 
+    public float FOVRegular;
+    public float FOVZoom;
 
     private void Update()
     {
@@ -103,18 +105,18 @@ public class BlockManager : MonoBehaviour
     private void HandleUtility()
     {
         // Restart scene
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            SceneManager.LoadSceneAsync(0);
+            GameManager.Instance.LoadMenu();
         }
 
         // Zoom toggle
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (vcam.m_Lens.OrthographicSize == 50f)
-                vcam.m_Lens.OrthographicSize = 75f;
+            if (vcam.m_Lens.OrthographicSize == FOVRegular)
+                vcam.m_Lens.OrthographicSize = FOVZoom;
             else
-                vcam.m_Lens.OrthographicSize = 50f;
+                vcam.m_Lens.OrthographicSize = FOVRegular;
         }
     }
 }
