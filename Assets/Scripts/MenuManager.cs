@@ -24,7 +24,6 @@ public class MenuManager : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(null);
     }
-
     public void ShowCredits()
     {
         mainMenu.SetActive(false);

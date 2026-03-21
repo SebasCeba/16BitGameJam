@@ -19,7 +19,6 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = background;
         musicSource.Play();
     }
-
     public void PlaySfx(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);

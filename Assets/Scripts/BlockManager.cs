@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using Cinemachine;
 
@@ -16,6 +15,7 @@ public class BlockManager : MonoBehaviour
     public float FOVRegular;
     public float FOVZoom;
 
+    public CollectibleManager cm;
     private void Update()
     {
         HandleDelete();
@@ -70,6 +70,8 @@ public class BlockManager : MonoBehaviour
             {
                 playerBlockTile.SetTile(cellPos, placeTile);
                 playerBlockTile.RefreshTile(cellPos);
+
+                cm.blockUpdate();
             }
         }
     }

@@ -16,7 +16,6 @@ public class killBox : MonoBehaviour
             Invoke(nameof(ReloadSceneFromManager), player.deathDelay);
         }
     }
-
     private void ReloadSceneFromManager()
     {
         GameManager.Instance.ReloadScene();

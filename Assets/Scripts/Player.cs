@@ -54,7 +54,6 @@ public class Player : MonoBehaviour
 
         anim.SetBool("Jumping", !IsGrounded());
     }
-
     private void FixedUpdate()
     {
         rb2D.velocity = new Vector2(horizontalInput * speed, rb2D.velocity.y);
@@ -79,7 +78,6 @@ public class Player : MonoBehaviour
         hasDied = true;
         //audioManager.PlaySfx(audioManager.deathSfx);
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Collectible"))
