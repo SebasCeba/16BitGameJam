@@ -431715,8 +431715,8 @@ MonoBehaviour:
   placeTile: {fileID: 11400000, guid: fd54787f3f2c24a4cb577abf81ee18e0, type: 2}
   vcam: {fileID: 229863348}
   placeRange: 8
-  FOVRegular: 40
-  FOVZoom: 50
+  FOVRegular: 45
+  FOVZoom: 55
   cm: {fileID: 563467596}
 --- !u!114 &1727155437
 MonoBehaviour:

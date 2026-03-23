@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         // This checks if the player is touching the ground and checks if it could.
-        if(Input.GetKeyDown(KeyCode.J) && IsGrounded())
+        if(Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpingPower);
             anim.SetBool("Jumping", true);
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         }
 
         // Depending on how long or short the player holds the button, they longer/high they jump. 
-        if (Input.GetKeyUp(KeyCode.J) && rb2D.velocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && rb2D.velocity.y > 0f)
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * 0.5f);
             anim.SetBool("Jumping", true);
