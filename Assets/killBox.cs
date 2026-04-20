@@ -11,12 +11,12 @@ public class killBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.playerDeathAnim();
-            Invoke(nameof(ReloadSceneFromManager), player.deathDelay);
+            //player.playerDeathAnim();
+            //Invoke(nameof(ReloadSceneFromManager), player.deathDelay);
         }
     }
-    private void ReloadSceneFromManager()
-    {
-        GameManager.Instance.ReloadScene();
-    }
+    //private void ReloadSceneFromManager()
+    //{
+    //    GameManager.Instance.ReloadScene();
+    //}
 }

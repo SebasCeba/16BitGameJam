@@ -18,7 +18,7 @@ public class BlockManager : MonoBehaviour
     public CollectibleManager cm;
     private void Update()
     {
-        HandleDelete();
+        //HandleDelete();
         HandlePlacement();
         HandleUtility();
     }
@@ -75,26 +75,26 @@ public class BlockManager : MonoBehaviour
             }
         }
     }
-    private void HandleDelete()
-    {
-        // Delete a block at the player's feet when I is pressed.
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            // Find the player in the scene
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                // Use the bottom of the player's collider for accuracy
-                Vector3 feetPos = player.transform.position + Vector3.down * 0.5f;
-                Vector3Int cellPos = playerBlockTile.WorldToCell(feetPos);
-                if (playerBlockTile.HasTile(cellPos))
-                {
-                    playerBlockTile.SetTile(cellPos, null);
-                    playerBlockTile.RefreshTile(cellPos);
-                }
-            }
-        }
-    }
+    //private void HandleDelete()
+    //{
+    //    // Delete a block at the player's feet when I is pressed.
+    //    if (Input.GetKeyDown(KeyCode.I))
+    //    {
+    //        // Find the player in the scene
+    //        GameObject player = GameObject.FindGameObjectWithTag("Player");
+    //        if (player != null)
+    //        {
+    //            // Use the bottom of the player's collider for accuracy
+    //            Vector3 feetPos = player.transform.position + Vector3.down * 0.5f;
+    //            Vector3Int cellPos = playerBlockTile.WorldToCell(feetPos);
+    //            if (playerBlockTile.HasTile(cellPos))
+    //            {
+    //                playerBlockTile.SetTile(cellPos, null);
+    //                playerBlockTile.RefreshTile(cellPos);
+    //            }
+    //        }
+    //    }
+    //}
 
     private Vector2 GetDirectionInput()
     {
@@ -109,7 +109,7 @@ public class BlockManager : MonoBehaviour
         // Restart scene
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameManager.Instance.LoadMenu();
+            GameManager.Instance.ReloadScene();
         }
 
         // Zoom toggle

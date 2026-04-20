@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(0);
     }
+    public void SelectScene(int sceneID)
+    {
+        SceneManager.LoadScene(sceneID);
+    }
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

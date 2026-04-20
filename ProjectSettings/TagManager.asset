@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Audio
   - Collectible
+  - Ground
+  - Block
+  - Spike
   layers:
   - Default
   - TransparentFX
