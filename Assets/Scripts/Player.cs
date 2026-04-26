@@ -120,6 +120,17 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             cm.collectCount++; 
         }
+        if (other.gameObject.CompareTag("Lever"))
+        {
+            other.gameObject.GetComponent<Animator>().SetBool("Enter", true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Lever"))
+        {
+            other.gameObject.GetComponent<Animator>().SetBool("Exit", true);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

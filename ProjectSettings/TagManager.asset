@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Block
   - Spike
+  - Lever
   layers:
   - Default
   - TransparentFX
