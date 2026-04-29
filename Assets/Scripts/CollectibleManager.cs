@@ -4,6 +4,7 @@ using UnityEngine;
 public class CollectibleManager : MonoBehaviour
 {
     public Player player;
+    public BlockManager blockManager;
 
     [Header("Collectible Settings")]
     public int collectCount;
@@ -21,6 +22,7 @@ public class CollectibleManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         collectText.text = "Total: " + collectCountTotal.ToString();
         nextLevelUI.SetActive(false);
+        blockManager.enabled = true; // Enable block placement at the start of the game
     }
     // Update is called once per frame
     void Update()
@@ -46,9 +48,13 @@ public class CollectibleManager : MonoBehaviour
 
         if(collectCount >= collectCountTotal)
         {
-            //player.isCelebrating = true;
+            player.isCelebrating = true;
+            player.anim.SetBool("Jumping", false); // Stop the jump animation if it's playing
             nextLevelUI.SetActive(true);
             player.anim.SetBool("Celebrate", true);
+            player.rb2D.simulated = false; // Disable physics to prevent movement during celebration
+            blockManager.enabled = false; // Disable block placement during celebration
+            BlockScore();
         }
 
         blockPlaceText.text = "Placed: " + blockPlaceCount.ToString();
@@ -64,17 +70,17 @@ public class CollectibleManager : MonoBehaviour
         {
             blockScoreText.text = "How did you win without placing any blocks?";
         }
-        else if(blockPlaceCount >= 20)
+        else if(blockPlaceCount >= 50)
         {
             blockScoreText.text = "Woah, try again with fewer blocks next time.";
         }
-        else if(blockPlaceCount >= 10)
+        else if(blockPlaceCount >= 35)
         {
-            blockPlaceText.text = "You placed a lot of blocks! You must have had a hard time.";
+            blockScoreText.text = "You placed a lot of blocks! You must have had a hard time.";
         }
-        else if(blockPlaceCount >= 5)
+        else if(blockPlaceCount >= 20)
         {
-            blockPlaceText.text = "This seems reasonable amount of blocks placed.";
+            blockScoreText.text = "This seems reasonable amount of blocks placed.";
         }
         else
         {

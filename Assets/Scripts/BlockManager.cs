@@ -16,6 +16,8 @@ public class BlockManager : MonoBehaviour
     public float FOVZoom;
 
     public CollectibleManager cm;
+    public AudioManager audioManager;
+    public Player player; 
     private void Update()
     {
         //HandleDelete();
@@ -66,6 +68,8 @@ public class BlockManager : MonoBehaviour
             Vector3 worldPos = transform.position + (Vector3)lastDirection * placeRange;
             Vector3Int cellPos = playerBlockTile.WorldToCell(worldPos);
 
+            audioManager.PlayRandomPlacementSfx();
+
             if (!playerBlockTile.HasTile(cellPos))
             {
                 playerBlockTile.SetTile(cellPos, placeTile);
@@ -106,6 +110,11 @@ public class BlockManager : MonoBehaviour
     }
     private void HandleUtility()
     {
+        // Teleport to the checkpoint 
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            player.TeleportToCheckpoint();
+        }
         // Restart scene
         if (Input.GetKeyDown(KeyCode.K))
         {

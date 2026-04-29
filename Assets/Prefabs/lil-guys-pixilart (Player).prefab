@@ -240,6 +240,7 @@ MonoBehaviour:
   deathDelay: 0.6
   hasDied: 0
   isCelebrating: 0
+  audioManager: {fileID: 0}
   cm: {fileID: 0}
   deathDuration: 0.6
   checkpointLimit: 3
@@ -265,6 +266,8 @@ MonoBehaviour:
   FOVRegular: 45
   FOVZoom: 55
   cm: {fileID: 0}
+  audioManager: {fileID: 0}
+  player: {fileID: 8507525167405315836}
 --- !u!114 &9074559396876800678
 MonoBehaviour:
   m_ObjectHideFlags: 0

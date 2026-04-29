@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public bool isCelebrating = false;
 
     [Header("Managers")]
-    //AudioManager audioManager;
+    public AudioManager audioManager;
     public CollectibleManager cm;
 
     [Header("Respawn Settings")]
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        //audioManager = FindAnyObjectByType<AudioManager>();
+        audioManager = FindAnyObjectByType<AudioManager>();
         anim.SetBool("Death", false);
         isCelebrating = false;
         rb2D = GetComponent<Rigidbody2D>();
@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
+        bool isMoving = Mathf.Abs(horizontalInput) > 0.1f && IsGrounded() && !hasDied && !isCelebrating;
+
         anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         // This checks if the player is touching the ground and checks if it could.
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpingPower);
             anim.SetBool("Jumping", true);
 
-            //audioManager.PlaySfx(audioManager.jumpSfx);
+            audioManager.PlayRandomJumpSfx();
         }
 
         // Depending on how long or short the player holds the button, they longer/high they jump. 
@@ -111,12 +113,13 @@ public class Player : MonoBehaviour
     {
         anim.SetBool("Death", true);
         hasDied = true;
-        //audioManager.PlaySfx(audioManager.deathSfx);
+        audioManager.PlaySfx(audioManager.deathSfx);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Collectible"))
         {
+            audioManager.PlaySfx(audioManager.collectedSfx);
             Destroy(other.gameObject);
             cm.collectCount++; 
         }
@@ -171,5 +174,9 @@ public class Player : MonoBehaviour
         
         anim.SetBool("Death", false); // Reset the death animation state
         hasDied = false; // Reset the player's death status to allow them to play again
+    }
+    public void TeleportToCheckpoint()
+    {
+        transform.position = checkpointPos; // Teleport the player to the current checkpoint position
     }
 }
