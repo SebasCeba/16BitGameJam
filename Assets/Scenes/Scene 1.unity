@@ -33148,6 +33148,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 688272261105299142, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 688272261105299142, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1668213746789792323, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -33192,6 +33200,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4220002781147597035, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: walkSfx
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 8300000, guid: c597683b3ffcbf54f8029fddae32b0b9, type: 3}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: walkSfx.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: walkSfx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f92e64bb8d1d0e7409ba95e07125c747, type: 3}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: walkSfx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d58ae6b9d893283408529789c0a29aac, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

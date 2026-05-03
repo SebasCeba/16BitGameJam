@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private float horizontalInput;
 
     private bool isFacingRight = true;
+    private bool playingFootstepSfx = false;
+    public float footstepSpeed = 0.5f; // Time interval between footstep sound effects when the player is moving
 
     [Header("Ground Check Components")]
     [SerializeField] private Transform groundCheck;
@@ -83,10 +85,36 @@ public class Player : MonoBehaviour
         respawnLimit();
 
         anim.SetBool("Jumping", !IsGrounded());
+
+        // Start walking sound effect if the player is moving and grounded, and stop it if they are not
+        if(isMoving&& !playingFootstepSfx)
+        {
+            StartFootsteps();
+        }
+        else if(!isMoving)
+        {
+            StopFootsteps();
+        }
     }
     private void FixedUpdate()
     {
         rb2D.velocity = new Vector2(horizontalInput * speed, rb2D.velocity.y);
+    }
+
+    void StartFootsteps()
+    {
+        playingFootstepSfx = true; 
+        InvokeRepeating(nameof(PlayFootstep), 0f, footstepSpeed); // Start invoking the footstep sound effect at regular intervals
+    }
+    void PlayFootstep()
+    {
+        audioManager.PlaySfx(audioManager.walkSfx);
+    }
+
+    void StopFootsteps()
+    {
+        playingFootstepSfx = false;
+        CancelInvoke(nameof(PlayFootstep)); // Stop invoking the footstep sound effect when the player stops moving
     }
     private bool IsGrounded()
     {
@@ -162,6 +190,7 @@ public class Player : MonoBehaviour
     void Die()
     {
         StartCoroutine(Respawn(deathDuration)); // Call the Respawn method to reset the player's position
+        StopFootsteps(); // Stop the footstep sound effect when the player dies
     }
     IEnumerator Respawn(float duration)
     {

@@ -14,16 +14,18 @@ public class AudioManager : MonoBehaviour
     public AudioClip walkSfx;
     public AudioClip deathSfx;
     public AudioClip collectedSfx;
-
     private void Start()
     {
-        musicSource.clip = background;
-        musicSource.Play();
+        if (musicSource != null)
+        {
+            musicSource.clip = background;
+            musicSource.Play();
+        }
     }
     public void PlaySfx(AudioClip clip)
     {
         if(clip != null)
-            sfxSource.PlayOneShot(clip); // Play the specified sound effect clip once without interrupting any currently playing sound effects
+            sfxSource.PlayOneShot(clip);
     }
     public void StopSfx()
     {
