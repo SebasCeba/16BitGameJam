@@ -189,6 +189,7 @@ public class Player : MonoBehaviour
     }
     void Die()
     {
+        audioManager.PlaySfx(audioManager.deathSfx); // Play the death sound effect when the player dies
         StartCoroutine(Respawn(deathDuration)); // Call the Respawn method to reset the player's position
         StopFootsteps(); // Stop the footstep sound effect when the player dies
     }

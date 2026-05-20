@@ -757,7 +757,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 688272261105299142, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
       propertyPath: m_Volume
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1668213746789792323, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
       propertyPath: m_LocalPosition.x
@@ -805,8 +805,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4220002781147597035, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: walkSfx
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: deathSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 23c965ee06573cb40adb430b540147c8, type: 3}
+    - target: {fileID: 7411241914590884642, guid: c23c0f40e9a760f4588111df5c70fa79, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 8300000, guid: 274db27c4227c6242a4b8089f773f959, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
